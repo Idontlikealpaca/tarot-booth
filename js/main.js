@@ -9,14 +9,17 @@ let isMusicPlaying = false;
 const screens = {
     main: document.getElementById('main-screen'),
     select: document.getElementById('select-screen'),
-    result: document.getElementById('result-screen')
+    result: document.getElementById('result-screen'),
+    detail: document.getElementById('detail-screen')
 };
 
 const buttons = {
     start: document.getElementById('start-btn'),
     bgmToggle: document.getElementById('bgm-toggle'),
     detailToggle: document.getElementById('detail-toggle'),
-    reset: document.getElementById('reset-btn')
+    back: document.getElementById('back-btn'),
+    reset: document.getElementById('reset-btn'),
+    resetDetail: document.getElementById('reset-btn-detail')
 };
 
 // 초기화
@@ -39,8 +42,10 @@ function initializeApp() {
     // 이벤트 리스너 등록
     buttons.start.addEventListener('click', startReading);
     buttons.bgmToggle.addEventListener('click', toggleBGM);
-    buttons.detailToggle.addEventListener('click', toggleDetail);
+    buttons.detailToggle.addEventListener('click', showDetailScreen);
+    buttons.back.addEventListener('click', backToResult);
     buttons.reset.addEventListener('click', resetReading);
+    buttons.resetDetail.addEventListener('click', resetReading);
     
     // 메인 화면 표시
     showScreen('main');
@@ -104,7 +109,7 @@ function showResultScreen(selectedCards) {
     // 행운의 컬러 적용
     applyLuckyColor(selectedCards[0].color);
     
-    // 상세 정보 준비 (숨김 상태)
+    // 상세 정보 준비
     prepareCardDetails(selectedCards);
 }
 
@@ -147,6 +152,10 @@ function applyLuckyColor(color) {
     // 결과 화면 배경에도 살짝 적용
     const resultScreen = screens.result;
     resultScreen.style.background = `linear-gradient(135deg, ${color}22, #1a0033, #2d1b4e)`;
+    
+    // 상세 화면 배경에도 적용
+    const detailScreen = screens.detail;
+    detailScreen.style.background = `linear-gradient(135deg, ${color}22, #1a0033, #2d1b4e)`;
 }
 
 // 카드 상세 정보 준비
@@ -171,31 +180,20 @@ function prepareCardDetails(selectedCards) {
     });
 }
 
-// 자세히 보기 토글
-function toggleDetail() {
-    const detailSection = document.getElementById('detail-section');
-    const arrow = document.getElementById('detail-arrow');
-    const button = buttons.detailToggle;
-    
-    if (detailSection.classList.contains('visible')) {
-        detailSection.classList.remove('visible');
-        arrow.classList.remove('rotated');
-        button.innerHTML = '자세히 보기 <span id="detail-arrow">▼</span>';
-    } else {
-        detailSection.classList.add('visible');
-        arrow.classList.add('rotated');
-        button.innerHTML = '간단히 보기 <span id="detail-arrow" class="rotated">▼</span>';
-    }
+// 자세히 보기 화면으로 전환
+function showDetailScreen() {
+    showScreen('detail');
+}
+
+// 결과 화면으로 돌아가기
+function backToResult() {
+    showScreen('result');
 }
 
 // 다시 시작
 function resetReading() {
     // 카드 선택 초기화
     cardSpreadManager.reset();
-    
-    // 상세 섹션 숨기기
-    const detailSection = document.getElementById('detail-section');
-    detailSection.classList.remove('visible');
     
     // 메인 화면으로 돌아가기
     showScreen('main');
@@ -204,7 +202,9 @@ function resetReading() {
 // 키보드 단축키 (선택 사항)
 document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') {
-        if (currentScreen === 'select' || currentScreen === 'result') {
+        if (currentScreen === 'detail') {
+            backToResult();
+        } else if (currentScreen === 'select' || currentScreen === 'result') {
             resetReading();
         }
     }
