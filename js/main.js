@@ -105,26 +105,6 @@ function startReading() {
     }, 100);
 }
 
-// BGM 토글
-function toggleBGM() {
-    isMusicPlaying = !isMusicPlaying;
-    const icon = document.getElementById('bgm-icon');
-    
-    if (isMusicPlaying) {
-        icon.textContent = '🔊';
-        // 여기에 실제 BGM 재생 로직 추가
-        // 예시:
-        // const audio = document.getElementById('bgm-audio');
-        // audio.play();
-    } else {
-        icon.textContent = '🔇';
-        // 여기에 실제 BGM 정지 로직 추가
-        // 예시:
-        // const audio = document.getElementById('bgm-audio');
-        // audio.pause();
-    }
-}
-
 // 결과 화면 표시
 function showResultScreen(selectedCards) {
     showScreen('result');

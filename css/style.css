@@ -179,8 +179,8 @@ body {
 
 .tarot-card {
     position: absolute;
-    width: 80px;
-    height: 120px;
+    width: 100px;
+    height: 140px;
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
