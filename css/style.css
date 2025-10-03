@@ -1,0 +1,473 @@
+/* 기본 스타일 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+}
+
+/* BGM 버튼 */
+.bgm-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.bgm-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
+}
+
+/* 화면 전환 */
+.screen {
+    min-height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.screen.active {
+    display: block;
+    opacity: 1;
+}
+
+/* 별 배경 */
+.stars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+/* 메인 화면 */
+#main-screen {
+    background: linear-gradient(135deg, #1a0033 0%, #3d0066 50%, #660066 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main-content {
+    text-align: center;
+    z-index: 10;
+    position: relative;
+}
+
+.sparkle {
+    font-size: 64px;
+    margin-bottom: 20px;
+}
+
+.main-title {
+    font-size: 60px;
+    color: white;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+}
+
+.main-subtitle {
+    font-size: 24px;
+    color: #d8b4ff;
+    margin-bottom: 40px;
+}
+
+.start-button {
+    padding: 20px 60px;
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+    background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+    transition: all 0.3s ease;
+}
+
+.start-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
+}
+
+/* 카드 선택 화면 */
+#select-screen {
+    background: linear-gradient(135deg, #1a0033 0%, #3d0066 50%, #660066 100%);
+    padding: 40px 20px;
+}
+
+.select-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+}
+
+.select-title {
+    font-size: 36px;
+    color: white;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.select-counter {
+    font-size: 20px;
+    color: #d8b4ff;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#selected-count {
+    font-weight: bold;
+    color: #ffd700;
+}
+
+/* 카드 펼치기 컨테이너 */
+.card-spread-container {
+    position: relative;
+    height: 500px;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+.tarot-card {
+    position: absolute;
+    width: 80px;
+    height: 120px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    transform-origin: center bottom;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.tarot-card:hover {
+    transform: translateY(-30px) scale(1.15) !important;
+    z-index: 100 !important;
+    box-shadow: 0 15px 35px rgba(255, 215, 0, 0.5);
+}
+
+.tarot-card.selected {
+    box-shadow: 0 0 20px 5px rgba(255, 215, 0, 0.8);
+    border: 3px solid #ffd700;
+}
+
+.tarot-card.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.card-back {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #4A148C 0%, #7B1FA2 100%);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+}
+
+.card-selected-mark {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    border-radius: 10px;
+}
+
+/* 결과 화면 */
+#result-screen {
+    background: linear-gradient(135deg, #1a0033 0%, #2d1b4e 100%);
+    padding: 40px 20px 80px 20px;
+}
+
+.result-content {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+    padding-bottom: 40px;
+}
+
+.result-title {
+    font-size: 42px;
+    color: white;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* 선택된 카드 표시 */
+.selected-cards-display {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.result-card {
+    width: 120px;
+    height: 180px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.result-card:hover {
+    transform: scale(1.05);
+}
+
+.result-card-icon {
+    font-size: 50px;
+    margin-bottom: 15px;
+}
+
+.result-card-name {
+    color: white;
+    font-weight: bold;
+    font-size: 14px;
+    text-align: center;
+}
+
+/* 점쟁이 캐릭터 */
+.fortune-teller {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 40px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+}
+
+.character-container {
+    flex-shrink: 0;
+}
+
+.character {
+    width: 100px;
+    height: 100px;
+    background: linear-gradient(135deg, #a78bfa 0%, #ec4899 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 60px;
+    box-shadow: 0 10px 30px rgba(167, 139, 250, 0.4);
+}
+
+.speech-bubble {
+    flex: 1;
+    background: white;
+    border-radius: 20px;
+    padding: 30px;
+    position: relative;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+}
+
+.speech-bubble::before {
+    content: '';
+    position: absolute;
+    left: -10px;
+    top: 30px;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
+    border-right: 10px solid white;
+}
+
+.speech-bubble p {
+    color: #333;
+    font-size: 18px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.lucky-color-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.color-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.lucky-color-indicator span {
+    color: #666;
+    font-size: 14px;
+}
+
+/* 자세히 보기 버튼 */
+.detail-toggle-btn {
+    width: 100%;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+}
+
+.detail-toggle-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+#detail-arrow {
+    transition: transform 0.3s ease;
+}
+
+#detail-arrow.rotated {
+    transform: rotate(180deg);
+}
+
+/* 상세 섹션 */
+.detail-section {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 30px;
+    padding: 40px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.detail-section.visible {
+    max-height: 2000px;
+    opacity: 1;
+}
+
+.detail-section h3 {
+    color: white;
+    font-size: 28px;
+    margin-bottom: 30px;
+}
+
+.card-detail-item {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+.card-detail-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.card-detail-color {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+}
+
+.card-detail-title {
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.card-detail-meaning {
+    color: #d8b4ff;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+.card-detail-description {
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* 다시 시작 버튼 */
+.reset-button {
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(135deg, #ff6b9d 0%, #c44569 100%);
+    border: none;
+    border-radius: 15px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
+    transition: all 0.3s ease;
+}
+
+.reset-button:hover {
+    background: linear-gradient(135deg, #ff5589 0%, #b33d5f 100%);
+    box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+    .main-title {
+        font-size: 40px;
+    }
+    
+    .select-title {
+        font-size: 24px;
+    }
+    
+    .fortune-teller {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .selected-cards-display {
+        gap: 15px;
+    }
+    
+    .result-card {
+        width: 90px;
+        height: 135px;
+    }
+}

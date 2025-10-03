@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>✨ 타로 운세 - Tarot Reading</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+    <!-- BGM 컨트롤 -->
+    <button id="bgm-toggle" class="bgm-btn">
+        <span id="bgm-icon">🔇</span>
+    </button>
+
+    <!-- 메인 화면 -->
+    <div id="main-screen" class="screen active">
+        <div class="stars"></div>
+        <div class="main-content">
+            <div class="sparkle">✨</div>
+            <h1 class="main-title">✨ 타로 운세 ✨</h1>
+            <p class="main-subtitle">오늘의 운세를 확인해보세요</p>
+            <button id="start-btn" class="start-button">운세 보러가기 🔮</button>
+        </div>
+    </div>
+
+    <!-- 카드 선택 화면 -->
+    <div id="select-screen" class="screen">
+        <div class="stars"></div>
+        <div class="select-content">
+            <h2 class="select-title">마음이 이끄는 카드 3장을 선택하세요</h2>
+            <p class="select-counter">선택한 카드: <span id="selected-count">0</span> / 3</p>
+            
+            <!-- 카드 펼치기 컨테이너 -->
+            <div id="card-spread" class="card-spread-container">
+                <!-- 카드들이 동적으로 생성됩니다 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 결과 화면 -->
+    <div id="result-screen" class="screen">
+        <div class="stars"></div>
+        <div class="result-content">
+            <h2 class="result-title">🔮 오늘의 운세 🔮</h2>
+            
+            <!-- 선택한 카드 3장 -->
+            <div id="selected-cards" class="selected-cards-display">
+                <!-- 선택된 카드들이 표시됩니다 -->
+            </div>
+
+            <!-- 캐릭터와 말풍선 -->
+            <div class="fortune-teller">
+                <div class="character-container">
+                    <div class="character">🔮</div>
+                </div>
+                <div class="speech-bubble">
+                    <p id="fortune-summary"></p>
+                    <div class="lucky-color-indicator">
+                        <div id="lucky-color-dot" class="color-dot"></div>
+                        <span>오늘의 행운의 컬러입니다! ✨</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 자세히 보기 버튼 -->
+            <button id="detail-toggle" class="detail-toggle-btn">
+                자세히 보기
+                <span id="detail-arrow">▼</span>
+            </button>
+
+            <!-- 상세 해설 -->
+            <div id="detail-section" class="detail-section hidden">
+                <h3>📖 카드 해설</h3>
+                <div id="card-details">
+                    <!-- 카드 상세 정보가 표시됩니다 -->
+                </div>
+            </div>
+
+            <!-- 다시 시작 버튼 -->
+            <button id="reset-btn" class="reset-button">🔄 다시 시작하기</button>
+        </div>
+    </div>
+
+    <!-- JavaScript 파일들 -->
+    <script src="js/tarot-data.js"></script>
+    <script src="js/card-spread.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>
