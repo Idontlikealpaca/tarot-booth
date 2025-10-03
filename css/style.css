@@ -212,6 +212,8 @@ body {
     position: relative;
     z-index: 10;
     padding-bottom: 40px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .result-title {
@@ -372,14 +374,16 @@ body {
     padding: 40px;
     margin-bottom: 30px;
     border: 1px solid rgba(255, 255, 255, 0.2);
-    max-height: 0;
+    max-height: none;
     overflow: hidden;
     opacity: 0;
     transition: all 0.5s ease;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .detail-section.visible {
-    max-height: 2000px;
+    max-height: none;
     opacity: 1;
 }
 
