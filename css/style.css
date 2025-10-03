@@ -385,6 +385,8 @@ body {
 .detail-section.visible {
     max-height: none;
     opacity: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .detail-section h3 {
