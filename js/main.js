@@ -27,7 +27,36 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeApp();
 });
 
-function initializeApp() {
+// 이미지 프리로딩 함수
+async function preloadImages() {
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) loadingScreen.classList.add('active');
+
+    // 먼저 카드 뒷면 이미지만 로드
+    try {
+        await new Promise((resolve, reject) => {
+            const img = new Image();
+            img.onload = () => resolve();
+            img.onerror = () => reject();
+            img.src = 'asset/card-back.svg';
+        });
+    } catch (error) {
+        console.error('카드 뒷면 이미지 로드 실패:', error);
+    } finally {
+        if (loadingScreen) loadingScreen.classList.remove('active');
+    }
+
+    // 나머지 카드 이미지는 백그라운드에서 로드
+    tarotCards.forEach(card => {
+        const img = new Image();
+        img.src = card.image;
+    });
+}
+
+async function initializeApp() {
+    // 이미지 프리로딩
+    await preloadImages();
+
     // 카드 펼치기 매니저 초기화
     const cardSpreadContainer = document.getElementById('card-spread');
     cardSpreadManager = new CardSpread(cardSpreadContainer);

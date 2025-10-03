@@ -35,8 +35,8 @@ body {
 
 /* 카드 이미지 스타일 */
 .card-back-img {
-    width: 100%;
-    height: 100%;
+    width: 170%;
+    height: 170%;
     object-fit: contain;
     max-width: 150px;
     max-height: 150px;
@@ -268,6 +268,7 @@ body {
     padding: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease;
+    background: white !important;
 }
 
 .result-card:hover {
@@ -279,8 +280,14 @@ body {
     margin-bottom: 10px;
 }
 
+.result-card-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
 .result-card-name {
-    color: white;
+    color: #333;
     font-weight: bold;
     font-size: 12px;
     text-align: center;
