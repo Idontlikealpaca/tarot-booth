@@ -499,6 +499,20 @@ body {
         font-size: 22px;
     }
     
+    .card-spread-container {
+        height: 50vh;
+        min-height: 350px;
+    }
+    
+    .tarot-card {
+        width: 60px;
+        height: 90px;
+    }
+    
+    .card-back {
+        font-size: 30px;
+    }
+    
     .fortune-teller {
         flex-direction: column;
         align-items: center;
