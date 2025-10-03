@@ -125,7 +125,7 @@ function displaySelectedCards(selectedCards) {
         cardElement.style.animationDelay = `${index * 0.2}s`;
         
         cardElement.innerHTML = `
-            <div class="result-card-icon">🎴</div>
+            <div class="result-card-icon"><img src="${card.image}" alt="${card.korean}" class="card-back-img"></div>
             <div class="result-card-name">${card.korean}</div>
         `;
         

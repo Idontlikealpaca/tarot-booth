@@ -33,6 +33,15 @@ body {
     transform: scale(1.1);
 }
 
+/* 카드 이미지 스타일 */
+.card-back-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    max-width: 150px;
+    max-height: 150px;
+}
+
 /* 화면 전환 */
 .screen {
     height: 100vh;
