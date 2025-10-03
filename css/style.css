@@ -67,12 +67,14 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .main-content {
     text-align: center;
-    z-index: 10;
+    z-index: 100;
     position: relative;
+    pointer-events: auto;
 }
 
 .sparkle {
@@ -104,11 +106,18 @@ body {
     cursor: pointer;
     box-shadow: 0 10px 30px rgba(255, 107, 157, 0.4);
     transition: all 0.3s ease;
+    position: relative;
+    z-index: 100;
+    pointer-events: auto;
 }
 
 .start-button:hover {
     transform: scale(1.1);
     box-shadow: 0 15px 40px rgba(255, 107, 157, 0.6);
+}
+
+.start-button:active {
+    transform: scale(0.98);
 }
 
 /* 카드 선택 화면 */
@@ -156,6 +165,7 @@ body {
     margin: 0 auto;
     width: 100%;
     max-width: 1200px;
+    margin-top: 80px;
 }
 
 .tarot-card {
