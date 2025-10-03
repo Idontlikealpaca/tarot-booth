@@ -70,7 +70,7 @@ class CardSpread {
         
         const cardBack = document.createElement('div');
         cardBack.className = 'card-back';
-        cardBack.innerHTML = '🎴';
+        cardBack.innerHTML = '<img src="asset/card-back.svg" alt="카드 뒷면" class="card-back-img">';
         
         card.appendChild(cardBack);
         
@@ -101,7 +101,7 @@ class CardSpread {
             // 카드 내용을 다시 뒷면으로
             const cardBack = cardElement.querySelector('.card-back');
             if (!cardBack) {
-                cardElement.innerHTML = '<div class="card-back">🎴</div>';
+                cardElement.innerHTML = '<div class="card-back"><img src="asset/card-back.svg" alt="카드 뒷면" class="card-back-img"></div>';
             }
         } else {
             // 새로 선택
