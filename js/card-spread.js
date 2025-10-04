@@ -24,7 +24,7 @@ class CardSpread {
         const startAngle = -spreadAngle / 2;
         
         // 반지름 (카드들이 배치될 원의 반지름)
-        const radius = Math.min(containerWidth * 0.45, 400);
+        const radius = Math.min(containerWidth * 0.4, 350);
         
         cardsData.forEach((card, index) => {
             const cardElement = this.createCardElement(card, index);
@@ -40,8 +40,8 @@ class CardSpread {
             const rotationDegree = (angle * 180 / Math.PI);
             
             // 카드 스타일 적용
-            cardElement.style.left = `${x - 40}px`; // 카드 너비의 절반만큼 빼기
-            cardElement.style.top = `${y - 60}px`; // 카드 높이의 절반만큼 빼기
+            cardElement.style.left = `${x - 35}px`; // 카드 너비의 절반만큼 빼기 (70/2)
+            cardElement.style.top = `${y - 52.5}px`; // 카드 높이의 절반만큼 빼기 (105/2)
             cardElement.style.transform = `rotate(${rotationDegree}deg)`;
             cardElement.style.zIndex = index;
             
