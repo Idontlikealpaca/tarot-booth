@@ -33,15 +33,6 @@ body {
     transform: scale(1.1);
 }
 
-/* 카드 이미지 스타일 */
-.card-back-img {
-    width: 170%;
-    height: 170%;
-    object-fit: contain;
-    max-width: 150px;
-    max-height: 150px;
-}
-
 /* 화면 전환 */
 .screen {
     height: 100vh;
@@ -174,13 +165,13 @@ body {
     margin: 0 auto;
     width: 100%;
     max-width: 1200px;
-    margin-top: 150px;
+    margin-top: 50px;
 }
 
 .tarot-card {
     position: absolute;
-    width: 100px;
-    height: 140px;
+    width: 80px;
+    height: 120px;
     border-radius: 10px;
     cursor: pointer;
     transition: all 0.3s ease;
@@ -253,8 +244,8 @@ body {
 .selected-cards-display {
     display: flex;
     justify-content: center;
-    gap: 10px;
-    margin-bottom: 25px;
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
 .result-card {
@@ -268,7 +259,6 @@ body {
     padding: 15px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
     transition: transform 0.3s ease;
-    background: white !important;
 }
 
 .result-card:hover {
@@ -277,17 +267,11 @@ body {
 
 .result-card-icon {
     font-size: 40px;
-    margin-bottom: 5px;
-}
-
-.result-card-icon img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    margin-bottom: 10px;
 }
 
 .result-card-name {
-    color: #333;
+    color: white;
     font-weight: bold;
     font-size: 12px;
     text-align: center;
