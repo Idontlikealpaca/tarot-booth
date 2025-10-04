@@ -4,6 +4,7 @@
 let currentScreen = 'main';
 let cardSpreadManager = null;
 let isMusicPlaying = false;
+let bgm = null;
 
 // DOM 요소
 const screens = {
@@ -28,6 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initializeApp() {
+    // BGM 초기화
+    bgm = document.getElementById('bgm');
+    bgm.volume = 0.3; // 볼륨을 30%로 설정
+
+    // BGM 버튼 이벤트 리스너
+    buttons.bgmToggle.addEventListener('click', toggleBGM);
     // 카드 펼치기 매니저 초기화
     const cardSpreadContainer = document.getElementById('card-spread');
     cardSpreadManager = new CardSpread(cardSpreadContainer);
@@ -199,4 +206,18 @@ function resetReading() {
     
     // 메인 화면으로 돌아가기
     showScreen('main');
+}
+
+// BGM 제어 함수
+function toggleBGM() {
+    if (isMusicPlaying) {
+        bgm.pause();
+        buttons.bgmToggle.querySelector('#bgm-icon').textContent = '🔇';
+    } else {
+        bgm.play().catch(error => {
+            console.log('BGM 재생 실패:', error);
+        });
+        buttons.bgmToggle.querySelector('#bgm-icon').textContent = '🔊';
+    }
+    isMusicPlaying = !isMusicPlaying;
 }
