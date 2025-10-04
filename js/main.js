@@ -27,36 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeApp();
 });
 
-// 이미지 프리로딩 함수
-async function preloadImages() {
-    const loadingScreen = document.getElementById('loading-screen');
-    if (loadingScreen) loadingScreen.classList.add('active');
-
-    // 먼저 카드 뒷면 이미지만 로드
-    try {
-        await new Promise((resolve, reject) => {
-            const img = new Image();
-            img.onload = () => resolve();
-            img.onerror = () => reject();
-            img.src = 'asset/card-back.svg';
-        });
-    } catch (error) {
-        console.error('카드 뒷면 이미지 로드 실패:', error);
-    } finally {
-        if (loadingScreen) loadingScreen.classList.remove('active');
-    }
-
-    // 나머지 카드 이미지는 백그라운드에서 로드
-    tarotCards.forEach(card => {
-        const img = new Image();
-        img.src = card.image;
-    });
-}
-
-async function initializeApp() {
-    // 이미지 프리로딩
-    await preloadImages();
-
+function initializeApp() {
     // 카드 펼치기 매니저 초기화
     const cardSpreadContainer = document.getElementById('card-spread');
     cardSpreadManager = new CardSpread(cardSpreadContainer);
@@ -105,6 +76,26 @@ function startReading() {
     }, 100);
 }
 
+// BGM 토글
+function toggleBGM() {
+    isMusicPlaying = !isMusicPlaying;
+    const icon = document.getElementById('bgm-icon');
+    
+    if (isMusicPlaying) {
+        icon.textContent = '🔊';
+        // 여기에 실제 BGM 재생 로직 추가
+        // 예시:
+        // const audio = document.getElementById('bgm-audio');
+        // audio.play();
+    } else {
+        icon.textContent = '🔇';
+        // 여기에 실제 BGM 정지 로직 추가
+        // 예시:
+        // const audio = document.getElementById('bgm-audio');
+        // audio.pause();
+    }
+}
+
 // 결과 화면 표시
 function showResultScreen(selectedCards) {
     showScreen('result');
@@ -134,7 +125,7 @@ function displaySelectedCards(selectedCards) {
         cardElement.style.animationDelay = `${index * 0.2}s`;
         
         cardElement.innerHTML = `
-            <div class="result-card-icon"><img src="${card.image}" alt="${card.korean}" class="card-back-img"></div>
+            <div class="result-card-icon">🎴</div>
             <div class="result-card-name">${card.korean}</div>
         `;
         
@@ -207,14 +198,3 @@ function resetReading() {
     // 메인 화면으로 돌아가기
     showScreen('main');
 }
-
-// 키보드 단축키 (선택 사항)
-document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-        if (currentScreen === 'detail') {
-            backToResult();
-        } else if (currentScreen === 'select' || currentScreen === 'result') {
-            resetReading();
-        }
-    }
-});
